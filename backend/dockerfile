@@ -4,6 +4,7 @@ WORKDIR /app
  
 COPY . .
  
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
 RUN pip install --no-cache-dir -r requirements.txt 
 RUN cp -r frontend/templates backend/templates
 RUN cp -r frontend/static backend/static
