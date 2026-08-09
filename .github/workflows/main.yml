@@ -38,8 +38,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          path: Expense_Tracker
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -59,7 +57,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Expense_Tracker/backend/dockerfile
+          file: ./backend/dockerfile
           push: true
           tags: |
             ghcr.io/${{ env.OWNER_LOWER }}/expense-tracker-backend:latest
@@ -69,7 +67,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: ./Expense_Tracker/frontend/dockerfile
+          file: ./frontend/dockerfile
           push: true
           tags: |
             ghcr.io/${{ env.OWNER_LOWER }}/expense-tracker-frontend:latest
