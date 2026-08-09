@@ -2,11 +2,11 @@ FROM python:3.12-slim
  
 WORKDIR /app
  
-COPY Expense_Tracker/backend/requirements.txt .
+COPY . .
  
 RUN pip install --no-cache-dir -r requirements.txt
  
-COPY Expense_Tracker ./Expense_Tracker
+COPY ./Expense_Tracker
  
 RUN cp -r Expense_Tracker/frontend/templates Expense_Tracker/backend/templates
 RUN cp -r Expense_Tracker/frontend/static Expense_Tracker/backend/static
