@@ -4,13 +4,10 @@ WORKDIR /app
  
 COPY . .
  
-RUN pip install --no-cache-dir -r requirements.txt
- 
-COPY ./Expense_Tracker
- 
-RUN cp -r Expense_Tracker/frontend/templates Expense_Tracker/backend/templates
-RUN cp -r Expense_Tracker/frontend/static Expense_Tracker/backend/static
+RUN pip install --no-cache-dir -r requirements.txt 
+RUN cp -r frontend/templates backend/templates
+RUN cp -r frontend/static backend/static
  
 ENV PYTHONPATH=/app
  
-CMD ["flask", "--app", "Expense_Tracker/backend/server.py", "run", "--host=0.0.0.0", "--port=5000"]
+CMD ["flask", "--app", "backend/server.py", "run", "--host=0.0.0.0", "--port=5000"]
