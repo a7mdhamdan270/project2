@@ -1,21 +1,15 @@
-FROM python:3.18
+FROM python:3.11-alpine3.18
 
 WORKDIR /app
 
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    libpq-dev \
-    && rm -rf /var/lib/apt/lists/*
-
+# Alpine uses apk instead of apt
+RUN apk add --no-cache gcc musl-dev postgresql-dev
 
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
     pip install --no-cache-dir -r requirements.txt
 
-
 COPY . .
-
 
 RUN cp -r frontend/templates backend/templates
 RUN cp -r frontend/static backend/static
